@@ -5,9 +5,18 @@ import TaskItem from './TaskItem';
 import { ClipboardList } from 'lucide-react';
 
 export default function TaskList() {
-  const { tasks, filter, setFilter, stats } = useTasks();
+  const { tasks, filter, setFilter, stats, loading } = useTasks();
 
   const filters = ['Todas', 'Pendentes', 'Concluídas'];
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mb-4"></div>
+        <p className="text-sm font-medium">Carregando tarefas...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

@@ -1,7 +1,9 @@
 import React from 'react';
 import { CheckSquare, BarChart2, Calendar, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 export default function Navbar({ activeTab, setActiveTab }) {
+  const { signOut } = useAuth();
   const navItems = [
     { id: 'tasks', label: 'Tarefas', icon: CheckSquare },
     { id: 'analytics', label: 'Análises', icon: BarChart2 },
@@ -40,7 +42,10 @@ export default function Navbar({ activeTab, setActiveTab }) {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 text-gray-500 hover:text-rose-600 transition-colors text-sm font-medium">
+            <button 
+              onClick={signOut}
+              className="flex items-center gap-2 text-gray-500 hover:text-rose-600 transition-colors text-sm font-medium"
+            >
               <LogOut className="w-4 h-4" />
               <span className="hidden sm:inline">Sair</span>
             </button>
